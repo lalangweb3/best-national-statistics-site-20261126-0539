@@ -26,11 +26,10 @@ function main(): void {
   copyDirRecursive(SCREENSHOTS_DIR, path.join(OUTPUT_DIR, "screenshots"));
   console.log(`Copied app/ and screenshots/ to ${OUTPUT_DIR}`);
 
-  const dossier = buildDossier({ app: APP_DIR, screenshots: SCREENSHOTS_DIR });
-  const dossierText =
-    typeof dossier === "string" ? dossier : JSON.stringify(dossier, null, 2);
-  fs.writeFileSync(path.join(OUTPUT_DIR, "dossier.json"), dossierText);
-  console.log(`Wrote dossier.json to ${path.join(OUTPUT_DIR, "dossier.json")}`);
+  const caps = { text_max_bytes: 4194304, screenshots: { max: 4, max_bytes: 262144 } };
+  const dossier = buildDossier(import.meta.dirname, caps);
+  fs.writeFileSync(path.join(OUTPUT_DIR, "dossier.json"), dossier);
+  console.log(`Wrote dossier.json (${dossier.length} bytes) to ${path.join(OUTPUT_DIR, "dossier.json")}`);
   console.log("Submission ready.");
 }
 
