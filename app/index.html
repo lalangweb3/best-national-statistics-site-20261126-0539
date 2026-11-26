@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NusaStat — Portal Statistik Indonesia</title>
+<meta name="description" content="NusaStat: portal statistik nasional Indonesia. Penduduk, ekonomi, ketenagakerjaan, kemiskinan, pendidikan, dan kesehatan 2019–2024.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#beranda" data-nav>
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span class="brand-text"><strong>NusaStat</strong><small>Statistik Indonesia 2019–2024</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false">☰</button>
+    <nav class="mainnav" id="mainNav" aria-label="Navigasi utama">
+      <a href="#beranda" data-nav>Beranda</a>
+      <a href="#penduduk" data-nav>Penduduk</a>
+      <a href="#ekonomi" data-nav>Ekonomi</a>
+      <a href="#kerja" data-nav>Ketenagakerjaan</a>
+      <a href="#sosial" data-nav>Kemiskinan &amp; Sosial</a>
+      <a href="#pendidikan" data-nav>Pendidikan</a>
+      <a href="#kesehatan" data-nav>Kesehatan</a>
+      <a href="#tentang" data-nav>Tentang &amp; Data</a>
+    </nav>
+  </div>
+</header>
+
+<div class="yearbar">
+  <div class="wrap yearbar-in">
+    <span class="yearbar-label">Tahun data:</span>
+    <div class="year-pills" id="yearPills" role="group" aria-label="Pilih tahun">
+      <button data-year="2019">2019</button>
+      <button data-year="2020">2020</button>
+      <button data-year="2021">2021</button>
+      <button data-year="2022">2022</button>
+      <button data-year="2023">2023</button>
+      <button data-year="2024" class="active">2024</button>
+    </div>
+    <span class="yearbar-note">Angka ringkasan dan penanda grafik mengikuti tahun ini.</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ================= BERANDA ================= -->
+  <section class="page active" id="page-beranda" data-page="beranda">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Portal Statistik Nasional &bull; Indonesia</p>
+        <h1>Indonesia dalam angka, 2019–2024</h1>
+        <p class="lede">Satu tempat untuk membaca arah Indonesia: penduduk yang tumbuh, ekonomi yang pulih, dan kualitas hidup yang membaik. Semua angka bersumber dari seri data yang sama dan dapat ditelusuri per tahun.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#ekonomi" data-nav>Lihat Ekonomi</a>
+          <a class="btn btn-ghost" href="#tentang" data-nav>Jelajahi Semua Data</a>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <p class="hero-stat-label">Penduduk <span class="yr">2024</span></p>
+        <p class="hero-stat-num" data-kpi="population" data-fmt="jt">281,6 jt</p>
+        <p class="hero-stat-sub">Tumbuh <span data-kpi="popGrowth">+1,0%</span> dari tahun sebelumnya &bull; 17.508 pulau &bull; 38 provinsi</p>
+      </div>
+    </div>
+
+    <div class="kpi-grid" aria-label="Angka ringkasan">
+      <div class="kpi"><p class="kpi-label">Penduduk</p><p class="kpi-num" data-kpi="population" data-fmt="jt">281,6 jt</p><p class="kpi-sub">jiwa, <span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">PDB Nominal</p><p class="kpi-num" data-kpi="gdpNominal" data-fmt="usd-m">US$ 1.400 M</p><p class="kpi-sub">per kapita <span data-kpi="gdpPerCapita" data-fmt="usd">US$ 4.972</span></p></div>
+      <div class="kpi"><p class="kpi-label">Pertumbuhan PDB</p><p class="kpi-num" data-kpi="gdpGrowth" data-fmt="pct">5,0%</p><p class="kpi-sub">tahun ke tahun, <span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">Inflasi</p><p class="kpi-num" data-kpi="inflation" data-fmt="pct">1,6%</p><p class="kpi-sub">terendah sejak 2019</p></div>
+      <div class="kpi"><p class="kpi-label">Pengangguran</p><p class="kpi-num" data-kpi="unemployment" data-fmt="pct">4,9%</p><p class="kpi-sub">dari angkatan kerja <span data-kpi="laborForce" data-fmt="jt">147,7 jt</span></p></div>
+      <div class="kpi"><p class="kpi-label">Kemiskinan</p><p class="kpi-num" data-kpi="poverty" data-fmt="pct">8,6%</p><p class="kpi-sub">turun dari 9,2% pada 2019</p></div>
+    </div>
+
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Penduduk Indonesia, 2019–2024</h2>
+        <p class="card-note">Juta jiwa. Titik oranye menandai tahun yang dipilih di atas.</p>
+        <canvas id="ch-population" height="240" aria-label="Grafik garis penduduk 2019 sampai 2024"></canvas>
+        <p class="card-foot">Populasi tumbuh rata-rata <strong>0,9% per tahun</strong> dalam enam tahun terakhir.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Pertumbuhan PDB, 2019–2024</h2>
+        <p class="card-note">Persen per tahun. 2020 tercatat kontraksi akibat pandemi.</p>
+        <canvas id="ch-gdp" height="240" aria-label="Grafik batang pertumbuhan PDB 2019 sampai 2024"></canvas>
+        <p class="card-foot">Ekonomi kembali tumbuh di atas 5% sejak 2022 dan bertahan hingga 2024.</p>
+      </article>
+    </div>
+
+    <div class="grid-3">
+      <a class="tile" href="#penduduk" data-nav><span class="tile-num">281,6 jt</span><span class="tile-label">Penduduk 2024</span><span class="tile-link">Buka halaman Penduduk →</span></a>
+      <a class="tile" href="#ekonomi" data-nav><span class="tile-num">US$ 264 M</span><span class="tile-label">Ekspor 2024</span><span class="tile-link">Buka halaman Ekonomi →</span></a>
+      <a class="tile" href="#kesehatan" data-nav><span class="tile-num">73,0 thn</span><span class="tile-label">Harapan hidup 2024</span><span class="tile-link">Buka halaman Kesehatan →</span></a>
+    </div>
+
+    <article class="card">
+      <h2>Tiga sorotan 2024</h2>
+      <ol class="highlights">
+        <li><strong>Pemulihan selesai.</strong> PDB tumbuh 5,0% dan inflasi turun ke 1,6% — kombinasi pertumbuhan stabil dengan harga terkendali.</li>
+        <li><strong>Pasar kerja membaik.</strong> Pengangguran turun ke 4,9%, terendah dalam enam tahun, dengan angkatan kerja 147,7 juta orang.</li>
+        <li><strong>Kemiskinan turun.</strong> Tingkat kemiskinan 8,6%, turun 0,8 poin dari 2023 dan 0,6 poin dari 2019.</li>
+      </ol>
+    </article>
+  </section>
+
+  <!-- ================= PENDUDUK ================= -->
+  <section class="page" id="page-penduduk" data-page="penduduk">
+    <div class="page-head">
+      <p class="eyebrow">Bab 01</p>
+      <h1>Penduduk</h1>
+      <p class="lede">Indonesia adalah negara berpenduduk terbesar keempat di dunia. Pertumbuhan melambat secara bertahap seiring turunnya angka kelahiran, sementara penduduk usia kerja masih mendominasi.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">Penduduk <span class="yr">2024</span></p><p class="kpi-num" data-kpi="population" data-fmt="jt">281,6 jt</p><p class="kpi-sub">jiwa</p></div>
+      <div class="kpi"><p class="kpi-label">Kepadatan</p><p class="kpi-num" data-kpi="density" data-fmt="dens">148 /km²</p><p class="kpi-sub">luas daratan 1.905 ribu km²</p></div>
+      <div class="kpi"><p class="kpi-label">Penduduk perkotaan</p><p class="kpi-num" data-kpi="urban" data-fmt="pct">59,0%</p><p class="kpi-sub"><span class="yr">2024</span>, naik dari 56,6% (2019)</p></div>
+      <div class="kpi"><p class="kpi-label">Usia kerja (15–64)</p><p class="kpi-num">68,4%</p><p class="kpi-sub">dari total penduduk 2024</p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Jumlah penduduk, 2019–2024</h2>
+        <p class="card-note">Juta jiwa.</p>
+        <canvas id="ch-population-2" height="240" aria-label="Grafik garis penduduk 2019 sampai 2024"></canvas>
+        <p class="card-foot">Kenaikan 2023 ke 2024 sebesar <strong>2,9 juta jiwa</strong>.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Struktur umur, 2024</h2>
+        <p class="card-note">Juta jiwa per kelompok umur.</p>
+        <canvas id="ch-age" height="240" aria-label="Grafik batang struktur umur 2024"></canvas>
+        <p class="card-foot">Bonus demografi: hampir tujuh dari sepuluh penduduk berusia produktif.</p>
+      </article>
+    </div>
+    <article class="card">
+      <h2>Lima provinsi terpadat, 2024</h2>
+      <table class="data-table">
+        <thead><tr><th>Provinsi</th><th>Penduduk (juta)</th><th>Pangsa nasional</th></tr></thead>
+        <tbody>
+          <tr><td>Jawa Barat</td><td>49,9</td><td>17,7%</td></tr>
+          <tr><td>Jawa Timur</td><td>41,8</td><td>14,8%</td></tr>
+          <tr><td>Jawa Tengah</td><td>37,9</td><td>13,5%</td></tr>
+          <tr><td>Sumatera Utara</td><td>15,6</td><td>5,5%</td></tr>
+          <tr><td>Banten</td><td>12,4</td><td>4,4%</td></tr>
+        </tbody>
+      </table>
+      <p class="card-foot">Pulau Jawa menampung sekitar 56% penduduk di atas 7% luas daratan Indonesia.</p>
+    </article>
+  </section>
+
+  <!-- ================= EKONOMI ================= -->
+  <section class="page" id="page-ekonomi" data-page="ekonomi">
+    <div class="page-head">
+      <p class="eyebrow">Bab 02</p>
+      <h1>Ekonomi</h1>
+      <p class="lede">Ekonomi Indonesia bernilai US$ 1.400 miliar pada 2024 — terbesar di Asia Tenggara. Setelah kontraksi 2020, pertumbuhan kembali ke kisaran 5% dengan inflasi yang terjaga.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">PDB nominal <span class="yr">2024</span></p><p class="kpi-num" data-kpi="gdpNominal" data-fmt="usd-m">US$ 1.400 M</p><p class="kpi-sub">per kapita <span data-kpi="gdpPerCapita" data-fmt="usd">US$ 4.972</span></p></div>
+      <div class="kpi"><p class="kpi-label">Pertumbuhan PDB</p><p class="kpi-num" data-kpi="gdpGrowth" data-fmt="pct">5,0%</p><p class="kpi-sub"><span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">Inflasi</p><p class="kpi-num" data-kpi="inflation" data-fmt="pct">1,6%</p><p class="kpi-sub"><span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">Neraca perdagangan</p><p class="kpi-num" data-kpi="tradeBalance" data-fmt="usd-m">US$ 31 M</p><p class="kpi-sub">surplus, <span class="yr">2024</span></p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Pertumbuhan PDB, 2019–2024</h2>
+        <p class="card-note">Persen per tahun.</p>
+        <canvas id="ch-gdp-2" height="240" aria-label="Grafik batang pertumbuhan PDB 2019 sampai 2024"></canvas>
+        <p class="card-foot">Rata-rata pertumbuhan 2019–2024 (di luar 2020): <strong>5,0%</strong>.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Inflasi, 2019–2024</h2>
+        <p class="card-note">Persen per tahun. Puncak 5,5% terjadi pada 2022.</p>
+        <canvas id="ch-inflation" height="240" aria-label="Grafik garis inflasi 2019 sampai 2024"></canvas>
+        <p class="card-foot">Inflasi 2024 (1,6%) adalah yang terendah dalam periode ini.</p>
+      </article>
+    </div>
+    <article class="card chart-card">
+      <h2>Ekspor vs impor, 2019–2024</h2>
+      <p class="card-note">Miliar US$. Indonesia mencatat surplus perdagangan setiap tahun sejak 2020.</p>
+      <canvas id="ch-trade" height="260" aria-label="Grafik batang ekspor dan impor 2019 sampai 2024"></canvas>
+      <p class="card-foot">Ekspor 2024 sebesar US$ 264 miliar; impor US$ 233 miliar; surplus US$ 31 miliar.</p>
+    </article>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>PDB per kapita, 2019–2024</h2>
+        <p class="card-note">US$ per orang.</p>
+        <canvas id="ch-gdppc" height="240" aria-label="Grafik garis PDB per kapita 2019 sampai 2024"></canvas>
+        <p class="card-foot">PDB per kapita naik dari US$ 4.174 (2019) menjadi US$ 4.972 (2024).</p>
+      </article>
+      <article class="card">
+        <h2>Kalkulator pertumbuhan</h2>
+        <p class="card-note">Hitung perubahan suatu nilai antar dua tahun: total dan rata-rata per tahun (CAGR).</p>
+        <form id="calcForm" class="calc">
+          <label>Nilai awal
+            <input type="number" id="calcStart" value="1119" min="0" step="any" required>
+          </label>
+          <label>Nilai akhir
+            <input type="number" id="calcEnd" value="1400" min="0" step="any" required>
+          </label>
+          <label>Tahun awal
+            <input type="number" id="calcYearStart" value="2019" min="1900" max="2100" required>
+          </label>
+          <label>Tahun akhir
+            <input type="number" id="calcYearEnd" value="2024" min="1900" max="2100" required>
+          </label>
+          <button type="submit" class="btn btn-primary">Hitung pertumbuhan</button>
+          <button type="button" class="btn btn-ghost" id="calcFill">Isi dengan PDB 2019 → 2024</button>
+        </form>
+        <div class="calc-result" id="calcResult" aria-live="polite">
+          <p>Masukkan angka, lalu tekan “Hitung pertumbuhan”. Contoh: PDB US$ 1.119 M (2019) → US$ 1.400 M (2024) tumbuh <strong>+25,1%</strong> total, atau <strong>+4,6% per tahun</strong>.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= KETENAGAKERJAAN ================= -->
+  <section class="page" id="page-kerja" data-page="kerja">
+    <div class="page-head">
+      <p class="eyebrow">Bab 03</p>
+      <h1>Ketenagakerjaan</h1>
+      <p class="lede">Angkatan kerja Indonesia mencapai 147,7 juta orang pada 2024. Jasa adalah lapangan kerja terbesar, sementara pengangguran muda masih menjadi tantangan.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">Angkatan kerja <span class="yr">2024</span></p><p class="kpi-num" data-kpi="laborForce" data-fmt="jt">147,7 jt</p><p class="kpi-sub">orang</p></div>
+      <div class="kpi"><p class="kpi-label">Pengangguran</p><p class="kpi-num" data-kpi="unemployment" data-fmt="pct">4,9%</p><p class="kpi-sub"><span class="yr">2024</span>, terendah 6 tahun</p></div>
+      <div class="kpi"><p class="kpi-label">Pengangguran muda (15–24)</p><p class="kpi-num" data-kpi="youthUnemployment" data-fmt="pct">13,8%</p><p class="kpi-sub"><span class="yr">2024</span>, turun dari 19,5% (2020)</p></div>
+      <div class="kpi"><p class="kpi-label">Pekerja di sektor jasa</p><p class="kpi-num">49,8%</p><p class="kpi-sub">dari total pekerja 2024</p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Tingkat pengangguran, 2019–2024</h2>
+        <p class="card-note">Persen angkatan kerja.</p>
+        <canvas id="ch-unemp" height="240" aria-label="Grafik garis pengangguran 2019 sampai 2024"></canvas>
+        <p class="card-foot">Pengangguran melonjak ke 7,1% pada 2020, lalu turun lima tahun berturut-turut.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Pekerja menurut sektor, 2024</h2>
+        <p class="card-note">Persen dari total pekerja.</p>
+        <canvas id="ch-sector" height="240" aria-label="Grafik batang pekerja menurut sektor 2024"></canvas>
+        <p class="card-foot">Jasa 49,8% &bull; Pertanian 28,2% &bull; Industri 22,0%.</p>
+      </article>
+    </div>
+    <article class="card">
+      <h2>Pengangguran muda vs keseluruhan</h2>
+      <table class="data-table">
+        <thead><tr><th>Tahun</th><th>Pengangguran (%)</th><th>Pengangguran muda 15–24 (%)</th><th>Angkatan kerja (jt)</th></tr></thead>
+        <tbody id="youthTable"></tbody>
+      </table>
+      <p class="card-foot">Pengangguran muda selalu sekitar tiga kali tingkat pengangguran keseluruhan — pola yang umum di negara berkembang.</p>
+    </article>
+  </section>
+
+  <!-- ================= KEMISKINAN & SOSIAL ================= -->
+  <section class="page" id="page-sosial" data-page="sosial">
+    <div class="page-head">
+      <p class="eyebrow">Bab 04</p>
+      <h1>Kemiskinan &amp; Sosial</h1>
+      <p class="lede">Tingkat kemiskinan turun ke 8,6% pada 2024 — sekitar 24,2 juta orang masih hidup di bawah garis kemiskinan. Ketimpangan, diukur dengan rasio Gini, bergerak tipis di kisaran 0,38.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">Kemiskinan <span class="yr">2024</span></p><p class="kpi-num" data-kpi="poverty" data-fmt="pct">8,6%</p><p class="kpi-sub">≈ 24,2 juta orang</p></div>
+      <div class="kpi"><p class="kpi-label">Rasio Gini</p><p class="kpi-num" data-kpi="gini" data-fmt="gini">0,377</p><p class="kpi-sub"><span class="yr">2024</span>; 0 = merata sempurna</p></div>
+      <div class="kpi"><p class="kpi-label">Kemiskinan 2019</p><p class="kpi-num">9,2%</p><p class="kpi-sub">penurunan 0,6 poin dalam 5 tahun</p></div>
+      <div class="kpi"><p class="kpi-label">Puncak kemiskinan</p><p class="kpi-num">10,2%</p><p class="kpi-sub">pada 2020 (pandemi)</p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Tingkat kemiskinan, 2019–2024</h2>
+        <p class="card-note">Persen penduduk.</p>
+        <canvas id="ch-poverty" height="240" aria-label="Grafik garis kemiskinan 2019 sampai 2024"></canvas>
+        <p class="card-foot">Kemiskinan naik saat pandemi 2020, lalu turun tiap tahun hingga 8,6% pada 2024.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Rasio Gini, 2019–2024</h2>
+        <p class="card-note">0 = semua orang berpenghasilan sama; 1 = satu orang menguasai semua.</p>
+        <canvas id="ch-gini" height="240" aria-label="Grafik garis rasio Gini 2019 sampai 2024"></canvas>
+        <p class="card-foot">Ketimpangan relatif stabil: Gini bergerak di 0,377–0,385 selama enam tahun.</p>
+      </article>
+    </div>
+    <article class="card">
+      <h2>Membaca angka kemiskinan</h2>
+      <p>Garis kemiskinan adalah batas pengeluaran minimum untuk memenuhi kebutuhan dasar makanan dan non-makanan. Pada 2024, sekitar 24,2 juta penduduk berada di bawah garis itu. Penurunan kemiskinan sejak 2020 didorong pulihnya pasar kerja informal dan bantuan sosial, tetapi laju penurunannya melambat: dari 2022 ke 2024 hanya turun 0,9 poin, lebih lambat dari pemulihan ekonomi.</p>
+    </article>
+  </section>
+
+  <!-- ================= PENDIDIKAN ================= -->
+  <section class="page" id="page-pendidikan" data-page="pendidikan">
+    <div class="page-head">
+      <p class="eyebrow">Bab 05</p>
+      <h1>Pendidikan</h1>
+      <p class="lede">Hampir semua anak Indonesia bersekolah di jenjang dasar, dan angka melek huruf penduduk usia 15 tahun ke atas mencapai 96,8%. Tantangan berikutnya adalah lama sekolah dan kualitas pembelajaran.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">Melek huruf (15+) <span class="yr">2024</span></p><p class="kpi-num" data-kpi="literacy" data-fmt="pct">96,8%</p><p class="kpi-sub">penduduk usia 15 tahun ke atas</p></div>
+      <div class="kpi"><p class="kpi-label">Rata-rata lama sekolah</p><p class="kpi-num" data-kpi="meanSchooling" data-fmt="thn">8,9 thn</p><p class="kpi-sub"><span class="yr">2024</span>, naik dari 8,3 (2019)</p></div>
+      <div class="kpi"><p class="kpi-label">APM SD</p><p class="kpi-num" data-kpi="netEnrollmentSD" data-fmt="pct">98,3%</p><p class="kpi-sub">angka partisipasi murni SD, <span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">APM SMP</p><p class="kpi-num">79,5%</p><p class="kpi-sub"><span class="yr">2024</span>; APM SMA 62,8%</p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Melek huruf penduduk 15+, 2019–2024</h2>
+        <p class="card-note">Persen.</p>
+        <canvas id="ch-literacy" height="240" aria-label="Grafik batang melek huruf 2019 sampai 2024"></canvas>
+        <p class="card-foot">Melek huruf naik 0,8 poin dalam enam tahun; buta huruf tersisa 3,2%.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Rata-rata lama sekolah, 2019–2024</h2>
+        <p class="card-note">Tahun.</p>
+        <canvas id="ch-schooling" height="240" aria-label="Grafik garis rata-rata lama sekolah 2019 sampai 2024"></canvas>
+        <p class="card-foot">Rata-rata lama sekolah naik 0,6 tahun sejak 2019 — setara tamat kelas 9.</p>
+      </article>
+    </div>
+    <article class="card">
+      <h2>Partisipasi sekolah menurut jenjang, 2024</h2>
+      <table class="data-table">
+        <thead><tr><th>Jenjang</th><th>Angka partisipasi murni</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>SD / sederajat</td><td>98,3%</td><td>Hampir universal</td></tr>
+          <tr><td>SMP / sederajat</td><td>79,5%</td><td>Turun setelah SD</td></tr>
+          <tr><td>SMA / sederajat</td><td>62,8%</td><td>Di bawah dua per tiga</td></tr>
+          <tr><td>Perguruan tinggi</td><td>31,4%</td><td>Angka partisipasi kasar</td></tr>
+        </tbody>
+      </table>
+      <p class="card-foot">Titik rawan adalah transisi SMP ke SMA: hampir empat dari sepuluh anak tidak melanjutkan ke jenjang menengah atas.</p>
+    </article>
+  </section>
+
+  <!-- ================= KESEHATAN ================= -->
+  <section class="page" id="page-kesehatan" data-page="kesehatan">
+    <div class="page-head">
+      <p class="eyebrow">Bab 06</p>
+      <h1>Kesehatan</h1>
+      <p class="lede">Harapan hidup orang Indonesia mencapai 73,0 tahun pada 2024 — naik 1,3 tahun sejak 2019. Kematian bayi terus turun, dan jaminan kesehatan nasional kini menjangkau hampir seluruh penduduk.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><p class="kpi-label">Harapan hidup <span class="yr">2024</span></p><p class="kpi-num" data-kpi="lifeExpectancy" data-fmt="thn">73,0 thn</p><p class="kpi-sub">naik dari 71,7 (2019)</p></div>
+      <div class="kpi"><p class="kpi-label">Kematian bayi</p><p class="kpi-num" data-kpi="infantMortality" data-fmt="imr">17,9</p><p class="kpi-sub">per 1.000 kelahiran hidup, <span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">Peserta JKN</p><p class="kpi-num">98,2%</p><p class="kpi-sub">penduduk terdaftar, <span class="yr">2024</span></p></div>
+      <div class="kpi"><p class="kpi-label">Puskesmas</p><p class="kpi-num">10.416</p><p class="kpi-sub">unit di seluruh Indonesia</p></div>
+    </div>
+    <div class="grid-2">
+      <article class="card chart-card">
+        <h2>Harapan hidup, 2019–2024</h2>
+        <p class="card-note">Tahun.</p>
+        <canvas id="ch-life" height="240" aria-label="Grafik garis harapan hidup 2019 sampai 2024"></canvas>
+        <p class="card-foot">Harapan hidup sempat stagnan saat pandemi, lalu naik 0,4 tahun per tahun sejak 2022.</p>
+      </article>
+      <article class="card chart-card">
+        <h2>Kematian bayi, 2019–2024</h2>
+        <p class="card-note">Per 1.000 kelahiran hidup.</p>
+        <canvas id="ch-imr" height="240" aria-label="Grafik garis kematian bayi 2019 sampai 2024"></canvas>
+        <p class="card-foot">Kematian bayi turun 2,6 poin dalam enam tahun — sekitar 13% lebih rendah dari 2019.</p>
+      </article>
+    </div>
+    <article class="card">
+      <h2>Fasilitas kesehatan, 2024</h2>
+      <table class="data-table">
+        <thead><tr><th>Fasilitas</th><th>Jumlah</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>Rumah sakit</td><td>3.168</td><td>Umum dan khusus</td></tr>
+          <tr><td>Puskesmas</td><td>10.416</td><td>Termasuk 4.001 rawat inap</td></tr>
+          <tr><td>Posyandu</td><td>283.841</td><td>Aktif di tingkat desa</td></tr>
+          <tr><td>Apotek</td><td>31.207</td><td>Berizin</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <!-- ================= TENTANG & DATA ================= -->
+  <section class="page" id="page-tentang" data-page="tentang">
+    <div class="page-head">
+      <p class="eyebrow">Bab 07</p>
+      <h1>Tentang &amp; Data</h1>
+      <p class="lede">NusaStat adalah portal statistik independen yang menyusun angka-angka utama Indonesia dalam satu tempat. Halaman ini menjelaskan data, cara membaca, dan indeks seluruh indikator.</p>
+    </div>
+    <article class="card">
+      <h2>Tentang NusaStat</h2>
+      <p>NusaStat dibangun untuk satu tujuan: membuat statistik nasional mudah dibaca siapa saja. Setiap bab menyajikan satu tema — penduduk, ekonomi, kerja, sosial, pendidikan, kesehatan — dengan grafik, angka ringkasan, dan tabel yang semuanya berasal dari seri data yang sama, sehingga angka di beranda sama persis dengan angka di halaman detail. Situs ini statis dan bekerja sepenuhnya tanpa koneksi internet.</p>
+      <h2>Sumber &amp; metode</h2>
+      <p>Angka-angka di situs ini adalah kompilasi dari publikasi statistik resmi Indonesia dan basis data internasional yang tersedia untuk publik (angka tahunan 2019–2024), disusun ulang dan dibulatkan untuk keterbacaan. Karena pembulatan, penjumlahan komponen dapat berbeda 0,1 dari total. Angka bersifat indikatif dan dapat direvisi saat publikasi resmi diperbarui. NusaStat bukan situs pemerintah dan tidak berafiliasi dengan lembaga statistik mana pun.</p>
+      <h2>Cara membaca grafik</h2>
+      <p>Semua grafik memakai sumbu dan label nilai yang sama di setiap halaman. Titik atau batang berwarna oranye menandai tahun yang dipilih pada bilah tahun di atas. Garis putus-putus menandai ambang penting bila ada (misalnya 0% pada pertumbuhan PDB).</p>
+    </article>
+    <article class="card">
+      <h2>Indeks indikator</h2>
+      <p class="card-note">Cari indikator berdasarkan nama, lalu klik untuk membuka halamannya.</p>
+      <div class="search-row">
+        <input type="search" id="searchInput" placeholder="Cari indikator… contoh: inflasi, kemiskinan, ekspor" aria-label="Cari indikator">
+        <span class="search-count" id="searchCount"></span>
+      </div>
+      <table class="data-table" id="indexTable">
+        <thead><tr><th>Indikator</th><th>Nilai <span class="yr">2024</span></th><th>Satuan</th><th>Halaman</th></tr></thead>
+        <tbody id="indexBody"></tbody>
+      </table>
+      <p class="card-foot" id="searchEmpty" hidden>Tidak ada indikator yang cocok. Coba kata kunci lain, misalnya “penduduk”, “PDB”, atau “sekolah”.</p>
+    </article>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div>
+      <strong>NusaStat</strong>
+      <p>Portal statistik nasional Indonesia, 2019–2024. Situs statis — bekerja tanpa internet.</p>
+    </div>
+    <nav aria-label="Tautan footer">
+      <a href="#beranda" data-nav>Beranda</a>
+      <a href="#ekonomi" data-nav>Ekonomi</a>
+      <a href="#penduduk" data-nav>Penduduk</a>
+      <a href="#tentang" data-nav>Tentang &amp; Data</a>
+    </nav>
+    <p class="footer-note">Angka bersifat indikatif dari kompilasi publik 2019–2024 dan dapat direvisi. NusaStat bukan situs pemerintah.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
